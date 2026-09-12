@@ -1,0 +1,895 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Dancing+Script:wght@500;700&display=swap');
+
+:root {
+  /* Colors */
+  --color-primary: #b84b11;
+  /* Deeper Terracotta */
+  --color-primary-dark: #8c360a;
+  --color-bg: #faf6f0;
+  /* Warmer, slightly aged paper color */
+  --color-bg-alt: #f1ebd9;
+  /* Richer beige for alternate sections */
+  --color-text: #2c2c2c;
+  --color-text-light: #555555;
+  --color-accent: #1e3a3a;
+  /* Deeper Dark Slate Green */
+  --color-white: #ffffff;
+  --color-border: #dcd0c0;
+
+  /* Typography */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-accent: 'Dancing Script', cursive;
+  /* Artistic script font */
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 7rem;
+
+  /* Shadows & organic shapes */
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.12);
+  --radius-organic: 2px 40px 2px 40px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+/* Evita scroll orizzontale indesiderato causato da elementi ruotati/ombre */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  /* Subtle texture gradient + noise */
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E"),
+    linear-gradient(120deg, #faf6f0 0%, #fdfbf7 100%);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-sm);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Dimensioni fluide: si adattano da sole tra mobile e desktop,
+   senza bisogno di ripetere override in ogni media query */
+h1 {
+  font-size: clamp(2rem, 5vw + 1rem, 3.8rem);
+  letter-spacing: -1px;
+}
+
+h2 {
+  font-size: clamp(1.7rem, 4vw + 0.8rem, 3rem);
+  letter-spacing: -0.5px;
+  position: relative;
+}
+
+h3 {
+  font-size: clamp(1.4rem, 2.5vw + 0.8rem, 2.2rem);
+}
+
+h4 {
+  font-size: clamp(1.2rem, 1.5vw + 0.8rem, 1.6rem);
+}
+
+p {
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-light);
+  font-size: 1.05rem;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Stato di focus visibile per navigazione da tastiera */
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.section {
+  padding: var(--spacing-xl) 0;
+  position: relative;
+}
+
+.section-alt {
+  background-color: var(--color-bg-alt);
+  /* Adding the same noise to the alt section */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-1 {
+  margin-bottom: var(--spacing-sm);
+}
+
+.mb-2 {
+  margin-bottom: var(--spacing-md);
+}
+
+.mb-3 {
+  margin-bottom: var(--spacing-lg);
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Artistic Accents */
+.accent-text {
+  font-family: var(--font-accent);
+  color: var(--color-primary);
+  font-size: clamp(1.8rem, 4vw + 0.5rem, 3em);
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: -25px;
+  position: relative;
+  z-index: 1;
+  transform: rotate(-4deg);
+  opacity: 0.9;
+  text-shadow: 2px 2px 4px rgba(184, 75, 17, 0.1);
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 16px 36px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  border-radius: 2px 15px 2px 15px;
+  /* Organic button */
+  border: 1px solid var(--color-primary);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  transition: all 0.4s ease;
+}
+
+.btn:hover::after {
+  left: 0;
+}
+
+.btn:hover {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  color: var(--color-white);
+  transform: translateY(-3px) scale(1.02);
+  border-radius: 15px 2px 15px 2px;
+  /* Flips on hover */
+  box-shadow: 0 8px 20px rgba(184, 75, 17, 0.4);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* Header & Navigation */
+header {
+  background-color: rgba(250, 246, 240, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(184, 75, 17, 0.1);
+  padding: 0.5rem 0;
+  /* Reduced padding for compact nav */
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: 0 var(--spacing-md);
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.logo {
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.logo img {
+  width: 150px;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover img {
+  transform: scale(1.05);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: var(--spacing-md);
+  /* Reduced gap */
+  justify-content: flex-end;
+  width: auto;
+}
+
+.nav-links a {
+  color: var(--color-accent);
+  font-family: var(--font-body);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.9rem;
+  /* Slightly smaller text */
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--color-primary);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* Il bottone hamburger fa parte del flusso flex dell'header:
+   niente più posizionamento assoluto con coordinate fisse,
+   così non si sovrappone mai al logo su schermi stretti. */
+.mobile-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-accent);
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  transition: background-color 0.3s ease;
+}
+
+.mobile-menu-btn:hover,
+.mobile-menu-btn:focus-visible {
+  background-color: rgba(184, 75, 17, 0.08);
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  min-height: 85vh;
+  min-height: 85dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background-color: #1a1a1a;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.65;
+  filter: sepia(0.2) contrast(1.1);
+  transform: scale(1.05);
+  animation: slowPan 20s linear infinite alternate;
+}
+
+@keyframes slowPan {
+  from {
+    transform: scale(1.05) translate(0, 0);
+  }
+
+  to {
+    transform: scale(1.1) translate(-2%, 2%);
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  padding: var(--spacing-md);
+}
+
+.hero h1 {
+  color: var(--color-white);
+  /* Fluida: niente più bisogno di override nelle media query */
+  font-size: clamp(2.1rem, 5vw + 1.5rem, 4.5rem);
+  margin-bottom: var(--spacing-sm);
+  text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.hero h1 i {
+  font-family: var(--font-accent);
+  font-style: normal;
+  color: #fbbf24;
+  font-weight: normal;
+  display: inline-block;
+  transform: rotate(-2deg);
+}
+
+.hero p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(1rem, 1.5vw + 0.7rem, 1.4rem);
+  margin-bottom: var(--spacing-md);
+  font-weight: 300;
+  text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+  letter-spacing: 1px;
+}
+
+.hero-btns {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-white {
+  background-color: var(--color-white);
+  color: var(--color-accent);
+  border-color: var(--color-white);
+}
+
+.btn-white:hover {
+  background-color: var(--color-bg-alt);
+  border-color: var(--color-bg-alt);
+  color: var(--color-accent);
+}
+
+/* Grid Layouts */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  align-items: center;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-md);
+}
+
+/* Images */
+.img-wrapper {
+  border-radius: var(--radius-organic);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  /* Fixed aspect ratio to prevent stretching */
+  aspect-ratio: 4 / 3;
+  transform: rotate(-1deg);
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.6s ease;
+}
+
+.img-wrapper:nth-child(even) {
+  transform: rotate(1deg);
+  border-radius: 40px 2px 40px 2px;
+}
+
+.img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.img-wrapper:hover {
+  transform: rotate(0deg) translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.img-wrapper:hover img {
+  transform: scale(1.08);
+}
+
+/* Feature Cards (Perché noi) */
+.feature-card {
+  text-align: center;
+  padding: var(--spacing-md);
+  background: var(--color-white);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+  transition: transform 0.4s ease;
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.1);
+}
+
+/* Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered reveals for grid items */
+.grid-2>.reveal:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.grid-3>.reveal:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.grid-3>.reveal:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+.grid-4>.reveal:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.grid-4>.reveal:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+.grid-4>.reveal:nth-child(4) {
+  transition-delay: 0.3s;
+}
+
+/* Chi preferisce meno animazioni non deve vederle */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero-bg {
+    animation: none;
+  }
+}
+
+/* Footer */
+footer {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  padding: var(--spacing-lg) 0 var(--spacing-md);
+}
+
+.footer-logo {
+  width: 180px;
+  filter: brightness(0) invert(1);
+}
+
+footer h4 {
+  color: var(--color-white);
+  font-size: 1.2rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+footer p,
+footer a {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+footer a:hover {
+  color: var(--color-primary);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: var(--spacing-md);
+  margin-top: var(--spacing-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+}
+
+/* Mobile sticky CTA */
+.mobile-cta {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-white);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  justify-content: space-around;
+  padding: 10px 10px calc(10px + env(safe-area-inset-bottom));
+}
+
+.mobile-cta a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  font-weight: 500;
+  min-height: 44px;
+  flex: 1;
+}
+
+.mobile-cta a i {
+  font-size: 1.2rem;
+  margin-bottom: 2px;
+  color: var(--color-primary);
+}
+
+/* Layout con immagini separate e ben distanziate */
+.cucina-images {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  /* Distanza pulita e naturale tra le foto */
+  width: 100%;
+}
+
+/* Prima immagine: spostata a sinistra */
+.cucina-images .img-main {
+  width: 65%;
+  align-self: flex-start;
+}
+
+/* Seconda immagine: spostata a destra, senza margini negativi per evitare che si tocchino */
+.cucina-images .img-secondary {
+  width: 65%;
+  align-self: flex-end;
+}
+
+.grid-5-inline {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--spacing-sm);
+  /* Riduciamo leggermente lo spazio tra di loro per guadagnare larghezza */
+}
+
+/* Compattiamo un attimo i margini interni delle card per far respirare le immagini */
+.grid-5-inline .feature-card {
+  padding: var(--spacing-sm);
+}
+
+/* Layout Mosaico pulito e bilanciato */
+.mosaic {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: repeat(2, 220px);
+  gap: var(--spacing-sm);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* L'immagine grande prende due righe in altezza sulla sinistra */
+.mosaic .m-large {
+  grid-row: span 2;
+  aspect-ratio: auto;
+  /* Lascia che sia la griglia a dettare l'altezza */
+  height: 100%;
+}
+
+/* Le altre due immagini si dispongono a destra una sopra l'altra */
+.mosaic .img-wrapper:not(.m-large) {
+  aspect-ratio: auto;
+  height: 100%;
+}
+
+/* ============================= */
+/* RESPONSIVE                    */
+/* ============================= */
+
+/* Tablet */
+@media (max-width: 992px) {
+  .grid-5-inline {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+  }
+
+  .hero {
+    min-height: 70vh;
+    min-height: 70dvh;
+  }
+
+  .grid-2 {
+    gap: var(--spacing-lg);
+  }
+}
+
+/* Aggiunge spazio e stacca la mappa dal testo nella sezione contatti */
+.section .grid-2 {
+  gap: var(--spacing-xl);
+  /* Aumenta lo spazio orizzontale tra le due colonne */
+}
+
+/* Assicura che il contenitore della mappa abbia un padding o un leggero distacco visivo se necessario */
+.section .grid-2>.img-wrapper {
+  margin-left: auto;
+  width: 100%;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .mosaic {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .mosaic .m-large {
+    grid-row: span 1;
+    aspect-ratio: 4 / 3;
+  }
+
+  .mosaic .img-wrapper {
+    aspect-ratio: 4 / 3;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 0;
+    width: 100%;
+    background-color: var(--color-white);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-md);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links a {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 0;
+    font-size: 1rem;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .header-container {
+    padding: 0.25rem var(--spacing-md);
+  }
+
+  .logo img {
+    width: 150px;
+    margin: 0;
+  }
+
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  /* Logo del footer centrato e più piccolo su mobile.
+     !important necessario per vincere lo style inline "width: 180px"
+     presente direttamente nell'HTML delle pagine. */
+  footer .grid-3>div:first-child>img:first-child,
+  footer .footer-logo {
+    width: 110px !important;
+    margin: 0 auto var(--spacing-sm) !important;
+  }
+
+  footer .grid-3>div:first-child {
+    text-align: center;
+  }
+
+  .grid-4 {
+    gap: var(--spacing-sm);
+  }
+
+  .hero-btns {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .hero-btns .btn {
+    width: 100%;
+  }
+
+  .section {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .accent-text {
+    margin-bottom: -14px;
+  }
+
+  /* Le immagini ruotate su schermi stretti possono causare micro
+     scroll orizzontale: le raddrizziamo per una resa più pulita */
+  .img-wrapper,
+  .img-wrapper:nth-child(even) {
+    transform: rotate(0deg);
+  }
+
+  .img-wrapper:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Show sticky mobile CTA */
+  .mobile-cta {
+    display: flex;
+  }
+
+  .cucina-images {
+    gap: var(--spacing-sm);
+  }
+
+  .cucina-images .img-main,
+  .cucina-images .img-secondary {
+    width: 100%;
+    align-self: stretch;
+  }
+
+  .grid-5-inline {
+    grid-template-columns: 1fr;
+  }
+
+  /* Prevent footer from hiding behind sticky CTA */
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .logo img {
+    width: 130px;
+  }
+
+  .btn {
+    padding: 14px 28px;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+
+  .hero-content {
+    padding: var(--spacing-sm);
+  }
+
+  footer {
+    text-align: center;
+  }
+
+  footer .grid-3 {
+    gap: var(--spacing-md);
+  }
+}
