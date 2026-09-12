@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Dancing+Script:wght@500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Dancing+Script:wght@500;700&display=swap");
 
 :root {
   /* Colors */
@@ -17,9 +17,9 @@
   --color-border: #dcd0c0;
 
   /* Typography */
-  --font-heading: 'Playfair Display', serif;
-  --font-body: 'Inter', sans-serif;
-  --font-accent: 'Dancing Script', cursive;
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+  --font-accent: "Dancing Script", cursive;
   /* Artistic script font */
 
   /* Spacing */
@@ -208,7 +208,7 @@ img {
 }
 
 .btn::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
@@ -306,7 +306,7 @@ header {
 }
 
 .nav-links a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -354,8 +354,8 @@ header {
 /* Hero Section */
 .hero {
   position: relative;
-  min-height: 85vh;
-  min-height: 85dvh;
+  min-height: 87vh;
+  min-height: 87dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -468,7 +468,9 @@ header {
   /* Fixed aspect ratio to prevent stretching */
   aspect-ratio: 4 / 3;
   transform: rotate(-1deg);
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.6s ease;
+  transition:
+    transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 0.6s ease;
 }
 
 .img-wrapper:nth-child(even) {
@@ -500,7 +502,9 @@ header {
   border-radius: 12px;
   box-shadow: var(--shadow-sm);
   height: 100%;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
 }
 
 .feature-card:hover {
@@ -532,33 +536,32 @@ header {
 }
 
 /* Staggered reveals for grid items */
-.grid-2>.reveal:nth-child(2) {
+.grid-2 > .reveal:nth-child(2) {
   transition-delay: 0.1s;
 }
 
-.grid-3>.reveal:nth-child(2) {
+.grid-3 > .reveal:nth-child(2) {
   transition-delay: 0.1s;
 }
 
-.grid-3>.reveal:nth-child(3) {
+.grid-3 > .reveal:nth-child(3) {
   transition-delay: 0.2s;
 }
 
-.grid-4>.reveal:nth-child(2) {
+.grid-4 > .reveal:nth-child(2) {
   transition-delay: 0.1s;
 }
 
-.grid-4>.reveal:nth-child(3) {
+.grid-4 > .reveal:nth-child(3) {
   transition-delay: 0.2s;
 }
 
-.grid-4>.reveal:nth-child(4) {
+.grid-4 > .reveal:nth-child(4) {
   transition-delay: 0.3s;
 }
 
 /* Chi preferisce meno animazioni non deve vederle */
 @media (prefers-reduced-motion: reduce) {
-
   *,
   *::before,
   *::after {
@@ -725,7 +728,7 @@ footer a:hover {
 }
 
 /* Assicura che il contenitore della mappa abbia un padding o un leggero distacco visivo se necessario */
-.section .grid-2>.img-wrapper {
+.section .grid-2 > .img-wrapper {
   margin-left: auto;
   width: 100%;
 }
@@ -794,13 +797,13 @@ footer a:hover {
   /* Logo del footer centrato e più piccolo su mobile.
      !important necessario per vincere lo style inline "width: 180px"
      presente direttamente nell'HTML delle pagine. */
-  footer .grid-3>div:first-child>img:first-child,
+  footer .grid-3 > div:first-child > img:first-child,
   footer .footer-logo {
     width: 110px !important;
     margin: 0 auto var(--spacing-sm) !important;
   }
 
-  footer .grid-3>div:first-child {
+  footer .grid-3 > div:first-child {
     text-align: center;
   }
 
@@ -866,7 +869,6 @@ footer a:hover {
 
 /* Small phones */
 @media (max-width: 480px) {
-
   .grid-4 {
     grid-template-columns: 1fr;
   }
